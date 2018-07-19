@@ -132,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         webSetting.setDefaultTextEncodingName("utf-8");
         webSetting.setJavaScriptEnabled(true);  //必须保留
         webSetting.setDomStorageEnabled(true);//保留,否则无法播放优酷视频网页
+        webView.requestFocus(View.FOCUS_DOWN);
         webView.setWebChromeClient(new WebChromeClient());//重写一下
         webView.setWebViewClient(new MyWebViewClient());
         loadUrl(url);

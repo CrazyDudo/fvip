@@ -26,7 +26,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 
-
 public class ProgressbarWebview extends WebView {
     private ProgressView progressView;//进度条
     private Context context;
@@ -36,8 +35,10 @@ public class ProgressbarWebview extends WebView {
     }
 
     public ProgressbarWebview(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+//        this(context, attrs, 0);
+        super(context, attrs);
     }
+
 
     public ProgressbarWebview(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
