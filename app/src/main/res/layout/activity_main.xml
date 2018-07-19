@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.fvip.cd.fvipplayer.activity.MainActivity">
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         >
+        <!--main -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.fvip.cd.fvipplayer.webview.ProgressbarWebview
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5" />
+
+        </LinearLayout>
+
+
+        <!--left -->
+        <ListView
+            android:id="@+id/lv_left"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="#40E0D0">
+
+        </ListView>
+
+        <ListView
+            android:id="@+id/lv_right"
+            android:layout_width="220dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="#40E0D0">
+
+        </ListView>
+
+    </android.support.v4.widget.DrawerLayout>
+
+
+</LinearLayout>
