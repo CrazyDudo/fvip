@@ -18,7 +18,7 @@ FVIP player
 
 ![](./resources/banner.png)
 
-点击进去以后提示需要开通VIP才能看
+屏幕右侧左滑脱出线路菜单，点击进去以后提示需要开通VIP才能看
 
 3. 选择资源播放接口  
 
@@ -28,10 +28,12 @@ FVIP player
 
 ![](./resources/palying.png)
 
-截图：
+截图：      
+屏幕左侧右滑拖出平台菜单    
 ![](./resources/leftmenu.png)
 ![](./resources/rightmenu.png)
 
+---
 该项目是基于 https://github.com/phobal/ivideo 的Android打包版。
 
 # 最后一样请大家低调使用，祝大家看得舒心
