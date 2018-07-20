@@ -48,7 +48,7 @@ public class ProgressbarWebView extends WebView {
     }
 
     private void init() {
-        //初始化进度条
+        //初始化
         progressView = new ProgressView(context);
         progressView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(context, 4)));
         progressView.setColor(Color.argb(100, 0, 255, 127));
