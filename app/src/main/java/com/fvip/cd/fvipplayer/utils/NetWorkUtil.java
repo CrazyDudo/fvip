@@ -3,6 +3,9 @@ package com.fvip.cd.fvipplayer.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+/**
+ * Created by cd on 2018/7/19.
+ */
 
 public class NetWorkUtil {
 

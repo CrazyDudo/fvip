@@ -25,21 +25,23 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+/**
+ * Created by cd on 2018/7/19.
+ */
 
-
-public class ProgressbarWebview extends WebView {
+public class ProgressbarWebView extends WebView {
     private ProgressView progressView;//进度条
     private Context context;
 
-    public ProgressbarWebview(Context context) {
+    public ProgressbarWebView(Context context) {
         this(context, null);
     }
 
-    public ProgressbarWebview(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public ProgressbarWebView(Context context, AttributeSet attrs) {
+        this(context, attrs,0);
     }
 
-    public ProgressbarWebview(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ProgressbarWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
         init();
@@ -50,7 +52,7 @@ public class ProgressbarWebview extends WebView {
         progressView = new ProgressView(context);
         progressView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(context, 4)));
         progressView.setColor(Color.argb(100, 0, 255, 127));
-        progressView.setProgress(10);
+        progressView.setProgress(0);
         //把进度条加到Webview中
         addView(progressView);
         //初始化设置

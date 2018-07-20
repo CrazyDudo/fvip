@@ -4,17 +4,10 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.fvip.cd.fvipplayer.R;
+/**
+ * Created by cd on 2018/7/19.
+ */
 
-/***************************************************************************************************
- *                                  Copyright (C), Nexgo Inc.                                      *
- *                                    http://www.nexgo.cn                                          *
- ***************************************************************************************************
- * usage           : ${filename}
- * Version         : 1
- * Author          : ruandong
- * Date            : 7/19/2018
- * Modify          : create file
- **************************************************************************************************/
 public class ADFilterTool {
     public static boolean hasAd(Context context, String url){
         Resources res= context.getResources();

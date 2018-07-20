@@ -8,8 +8,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-
-
+/**
+ * Created by cd on 2018/7/19.
+ */
 public class ProgressView extends View {
     private Paint mPaint;
     private int mWidth, mHeight;

@@ -1,7 +1,7 @@
 package com.fvip.cd.fvipplayer.api;
 
 /**
- * Created by ruandong on 2017/3/15.
+ * Created by cd on 2018/7/19.
  */
 
 

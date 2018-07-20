@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -22,7 +21,7 @@ import com.fvip.cd.fvipplayer.adapter.PlatformListAdapter;
 import com.fvip.cd.fvipplayer.api.ApiManage;
 import com.fvip.cd.fvipplayer.bean.PlaylistBean;
 import com.fvip.cd.fvipplayer.utils.ADFilterTool;
-import com.fvip.cd.fvipplayer.webview.ProgressbarWebview;
+import com.fvip.cd.fvipplayer.webview.ProgressbarWebView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,14 @@ import java.util.List;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+/**
+ * Created by cd on 2018/7/19.
+ */
 
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private ProgressbarWebview webView;
+    private ProgressbarWebView webView;
     //    private String url = "http://www.iqiyi.com/";
     private String url = "https://v.qq.com/";
     private List<PlaylistBean.PlatformlistBean> mLeftListData = new ArrayList<>();
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         webSetting.setDefaultTextEncodingName("utf-8");
         webSetting.setJavaScriptEnabled(true);  //必须保留
         webSetting.setDomStorageEnabled(true);//保留,否则无法播放优酷视频网页
-        webView.setWebChromeClient(new WebChromeClient());//重写一下
+//        webView.setWebChromeClient(new WebChromeClient());//重写一下
         webView.setWebViewClient(new MyWebViewClient());
         loadUrl(url);
     }

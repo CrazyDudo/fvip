@@ -7,8 +7,9 @@ import retrofit2.http.GET;
 import rx.Observable;
 
 /**
- * Created by ruandong on 2017/3/14.
+ * Created by cd on 2018/7/19.
  */
+
 
 public interface PlatformListApi {
 

@@ -15,6 +15,9 @@ import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import com.fvip.cd.fvipplayer.R;
+/**
+ * Created by cd on 2018/7/19.
+ */
 
 public class WebVideoActivity extends Activity {
   

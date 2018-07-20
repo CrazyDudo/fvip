@@ -11,6 +11,9 @@ import com.fvip.cd.fvipplayer.R;
 import com.fvip.cd.fvipplayer.bean.PlaylistBean;
 
 import java.util.List;
+/**
+ * Created by cd on 2018/7/19.
+ */
 
 
 @SuppressWarnings("NullableProblems")

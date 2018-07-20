@@ -2,16 +2,10 @@ package com.fvip.cd.fvipplayer.bean;
 
 import java.util.List;
 
-/***************************************************************************************************
- *                                  Copyright (C), Nexgo Inc.                                      *
- *                                    http://www.nexgo.cn                                          *
- ***************************************************************************************************
- * usage           : ${filename}
- * Version         : 1
- * Author          : ruandong
- * Date            : 7/18/2018
- * Modify          : create file
- **************************************************************************************************/
+/**
+ * Created by cd on 2018/7/19.
+ */
+
 public class PlaylistBean {
 
     private List<PlatformlistBean> platformlist;
