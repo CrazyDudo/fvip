@@ -1,6 +1,8 @@
 package com.fvip.cd.fvipplayer.activity;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -129,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.ECLAIR_MR1)
     private void initWebView() {
         webSetting = webView.getSettings();
         webSetting.setDefaultTextEncodingName("utf-8");
