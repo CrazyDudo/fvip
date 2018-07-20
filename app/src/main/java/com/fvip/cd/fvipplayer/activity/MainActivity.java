@@ -31,10 +31,10 @@ import java.util.List;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
 /**
  * Created by cd on 2018/7/19.
  */
-
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -59,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
     }
+
     private void init() {
         initView();
         initData();
     }
+
     private void initData() {
         ApiManage.getInstance()
                 .getSwitchService()
@@ -74,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onCompleted() {
                         Log.d(TAG, "onCompleted: ");
                     }
+
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG, "onError: " + e.getMessage());
                     }
+
                     @Override
                     public void onNext(PlaylistBean playlistBean) {
                         mLeftListData = playlistBean.getPlatformlist();
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void initView() {
         drawerLayout = findViewById(R.id.dl_layout);
         webView = findViewById(R.id.webview);
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     private void initRightMenu(final List<PlaylistBean.ListBean> mListData) {
         channelListAdapter = new ChannelListAdapter(MainActivity.this, R.layout.platform_list_item, mListData);
         lvRight.setDivider(null);
@@ -131,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.ECLAIR_MR1)
     private void initWebView() {
         webSetting = webView.getSettings();
@@ -146,12 +153,14 @@ public class MainActivity extends AppCompatActivity {
         webView.loadUrl(url);
         Log.d(TAG, "loadUrl: " + url);
     }
+
     private void playVIP(String channelUrl, String url) {
         furl = channelUrl + url;
 //        webView.loadUrl(furl);
         loadUrl(furl);
         Log.d(TAG, "playVIP====" + furl);
     }
+
     // 监听 所有点击的链接，如果拦截到我们需要的，就跳转到相对应的页面。
     private class MyWebViewClient extends WebViewClient {
         @Override

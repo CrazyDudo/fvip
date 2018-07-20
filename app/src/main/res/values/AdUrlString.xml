@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="adBlockUrl">
+        <item>yuyue008.cn</item>
+        <item>yuyue007.cn</item>
+        <item>yuyue006.cn</item>
+        <item>http://img.yuyue007.cn/</item>
+        <item>http://img.yuyue007.cn/</item>
+        <item>http://x3e.6qhbaxryz.com/</item>
+        <item>http://kong1.vqhtru6ef.com</item>
+
+    </string-array>
+
+    <string-array name="backup">
         <item>ubmcmm.baidustatic.com</item>
         <item>cpro2.baidustatic.com</item>
         <item>cpro.baidustatic.com</item>
@@ -13,7 +24,17 @@
         <item>union.sogou.com/</item>
         <item>sogou.com/</item>
         <item>a.baidu.com</item>
-        <item>c.baidu.com</item>
+        <item>http://www.yuyue008.cn/7028.js</item>
+        <item>yuyue008.cn</item>
+        <item>yuyue007.cn</item>
+        <item>yuyue006.cn</item>
+        <item>http://img.yuyue007.cn/</item>
+        <item>http://img.yuyue007.cn/</item>
+        <item>http://img.yuyue007.cn/a/2018-01-08/15154038018305.jpg</item>
+        <item>http://x3e.6qhbaxryz.com/bljz82/qsce.html?=ekua</item>
+        <item>http://x3e.6qhbaxryz.com/</item>
+        <item>http://kong1.vqhtru6ef.com/ry_187_T6/rytz.html</item>
+        <item>http://kong1.vqhtru6ef.com</item>
 
     </string-array>
 </resources>

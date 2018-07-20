@@ -29,6 +29,7 @@ import android.webkit.WebViewClient;
  * Created by cd on 2018/7/19.
  */
 
+
 public class ProgressbarWebView extends WebView {
     private ProgressView progressView;//进度条
     private Context context;
@@ -95,6 +96,7 @@ public class ProgressbarWebView extends WebView {
                 //更新进度
                 progressView.setProgress(newProgress);
             }
+
             super.onProgressChanged(view, newProgress);
         }
 
