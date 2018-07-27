@@ -39,11 +39,9 @@ import rx.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private ProgressbarWebView webView;
-    //    private String url = "http://www.iqiyi.com/";
     private String url = "https://v.qq.com/";
     private List<PlaylistBean.PlatformlistBean> mLeftListData = new ArrayList<>();
     private List<PlaylistBean.ListBean> mRightListData = new ArrayList<>();
-    private String baseUrl = "http://v.2gty.com/apiurl/yun.php?url=";
     private String platformVideoUrl = "";
     private WebSettings webSetting;
     private DrawerLayout drawerLayout;
@@ -156,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void playVIP(String channelUrl, String url) {
         furl = channelUrl + url;
-//        webView.loadUrl(furl);
         loadUrl(furl);
         Log.d(TAG, "playVIP====" + furl);
     }
