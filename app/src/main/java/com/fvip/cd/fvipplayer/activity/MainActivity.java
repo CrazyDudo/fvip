@@ -23,6 +23,7 @@ import com.fvip.cd.fvipplayer.adapter.PlatformListAdapter;
 import com.fvip.cd.fvipplayer.api.ApiManage;
 import com.fvip.cd.fvipplayer.bean.PlaylistBean;
 import com.fvip.cd.fvipplayer.utils.ADFilterTool;
+import com.fvip.cd.fvipplayer.utils.StringUtil;
 import com.fvip.cd.fvipplayer.webview.ProgressbarWebView;
 
 import java.util.ArrayList;
@@ -128,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
                                     int position, long id) {
                 if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {//如果此时抽屉窗口打开，就给他关闭
                     drawerLayout.closeDrawer(Gravity.RIGHT);
+                }
+
+                if (StringUtil.getCount(platformVideoUrl, "http")>1) {
+                    platformVideoUrl = platformVideoUrl.substring(platformVideoUrl.indexOf("=") + 1);
                 }
                 playVIP(mListData.get(position).getUrl(), platformVideoUrl);
                 Toast.makeText(MainActivity.this, mListData.get(position).getName(), Toast.LENGTH_SHORT).show();
