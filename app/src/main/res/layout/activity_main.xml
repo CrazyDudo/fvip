@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.fvip.cd.fvipplayer.activity.MainActivity">
+
+
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/dl_layout"
         android:layout_width="match_parent"
@@ -18,7 +20,16 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.fvip.cd.fvipplayer.webview.ProgressbarWebView
+            <ProgressBar
+                android:id="@+id/progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dip"
+                android:progressDrawable="@drawable/pg"
+                android:visibility="gone"
+                />
+
+            <WebView
                 android:id="@+id/webview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

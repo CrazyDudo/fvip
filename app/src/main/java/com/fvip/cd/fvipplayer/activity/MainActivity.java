@@ -9,12 +9,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.fvip.cd.fvipplayer.R;
@@ -24,7 +26,6 @@ import com.fvip.cd.fvipplayer.api.ApiManage;
 import com.fvip.cd.fvipplayer.bean.PlaylistBean;
 import com.fvip.cd.fvipplayer.utils.ADFilterTool;
 import com.fvip.cd.fvipplayer.utils.StringUtil;
-import com.fvip.cd.fvipplayer.webview.ProgressbarWebView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private ProgressbarWebView webView;
+    private WebView webView;
     private String url = "https://v.qq.com/";
     private List<PlaylistBean.PlatformlistBean> mLeftListData = new ArrayList<>();
     private List<PlaylistBean.ListBean> mRightListData = new ArrayList<>();
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private PlatformListAdapter mAdapter;
     private ChannelListAdapter channelListAdapter;
     private String furl;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        progressBar = findViewById(R.id.progressbar);
         drawerLayout = findViewById(R.id.dl_layout);
         webView = findViewById(R.id.webview);
         lvLeft = findViewById(R.id.lv_left);
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         webSetting.setDefaultTextEncodingName("utf-8");
         webSetting.setJavaScriptEnabled(true);  //必须保留
         webSetting.setDomStorageEnabled(true);//保留,否则无法播放优酷视频网页
-//        webView.setWebChromeClient(new WebChromeClient());//重写一下
+        webView.setWebChromeClient(new MyWebChromeClient());//重写一下
         webView.setWebViewClient(new MyWebViewClient());
         loadUrl(url);
     }
@@ -162,6 +165,23 @@ public class MainActivity extends AppCompatActivity {
         loadUrl(furl);
         Log.d(TAG, "playVIP====" + furl);
     }
+
+
+    private class MyWebChromeClient extends  WebChromeClient{
+
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            if(newProgress==100){
+                progressBar.setVisibility(View.GONE);//加载完网页进度条消失
+            }
+            else{
+                progressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
+                progressBar.setProgress(newProgress);//设置进度值
+            }
+
+        }
+    }
+
 
     // 监听 所有点击的链接，如果拦截到我们需要的，就跳转到相对应的页面。
     private class MyWebViewClient extends WebViewClient {
@@ -209,4 +229,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
+
+
 }
