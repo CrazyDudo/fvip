@@ -6,6 +6,7 @@ package com.fvip.cd.fvipplayer.config;
 
 public class Constant {
 //    private String baseUrl = "http://v.2gty.com/apiurl/yun.php?url=";
-    //    https://iodefog.github.io/text/viplist.json
+    //                            https://iodefog.github.io/text/viplist.json
+   //        2019年3月22日更新为：https://iodefog.github.io/text/mviplistmm.json
     public static String BASE_URL = "https://iodefog.github.io/";
 }

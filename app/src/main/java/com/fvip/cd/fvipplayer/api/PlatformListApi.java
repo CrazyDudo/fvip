@@ -10,10 +10,9 @@ import rx.Observable;
  * Created by cd on 2018/7/19.
  */
 
-
 public interface PlatformListApi {
-
-//    http://172.23.2.34:8080/CSMS/appAction
-    @GET("text/viplist.json")
+    //    https://iodefog.github.io/text/mviplistmm.json
+    @GET("text/mviplistmm.json")
     Observable<PlaylistBean> getPlatform();
+
 }
