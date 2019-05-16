@@ -1,7 +1,7 @@
-package com.fvip.cd.fvipplayer.api;
+package com.fvip.cd.fvipplayer.data.network;
 
 
-import com.fvip.cd.fvipplayer.bean.PlaylistBean;
+import com.fvip.cd.fvipplayer.data.network.model.PlaylistBean;
 
 import retrofit2.http.GET;
 import rx.Observable;

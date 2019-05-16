@@ -1,4 +1,4 @@
-package com.fvip.cd.fvipplayer.api;
+package com.fvip.cd.fvipplayer.data;
 
 /**
  * Created by cd on 2018/7/19.
@@ -6,7 +6,8 @@ package com.fvip.cd.fvipplayer.api;
 
 
 import com.fvip.cd.fvipplayer.AppApplication;
-import com.fvip.cd.fvipplayer.config.Constant;
+import com.fvip.cd.fvipplayer.data.config.Constant;
+import com.fvip.cd.fvipplayer.data.network.PlatformListApi;
 import com.fvip.cd.fvipplayer.utils.NetWorkUtil;
 
 import java.io.File;
@@ -69,7 +70,7 @@ public class ApiManage {
         return apiManage;
     }
 
-    public PlatformListApi getSwitchService() {
+    public PlatformListApi getVideoResourcesService() {
         if (switchApi == null) {
             synchronized (ApiManage.class) {
                 if (switchApi == null) {

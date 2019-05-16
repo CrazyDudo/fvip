@@ -1,4 +1,4 @@
-package com.fvip.cd.fvipplayer.adapter;
+package com.fvip.cd.fvipplayer.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,22 +8,22 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.fvip.cd.fvipplayer.R;
-import com.fvip.cd.fvipplayer.bean.PlaylistBean;
+import com.fvip.cd.fvipplayer.data.network.model.PlaylistBean;
 
 import java.util.List;
+
 /**
  * Created by cd on 2018/7/19.
  */
 
-
 @SuppressWarnings("NullableProblems")
-public class PlatformListAdapter extends ArrayAdapter<PlaylistBean.PlatformlistBean> {
+public class ChannelListAdapter extends ArrayAdapter<PlaylistBean.ListBean> {
 
 
     private int resourceId;
-    private final List<PlaylistBean.PlatformlistBean> datas;
+    private final List<PlaylistBean.ListBean> datas;
 
-    public PlatformListAdapter(Context context, int textViewResourceId, List<PlaylistBean.PlatformlistBean> data) {
+    public ChannelListAdapter(Context context, int textViewResourceId, List<PlaylistBean.ListBean> data) {
         super(context, textViewResourceId, data);
         datas = data;
         resourceId = textViewResourceId;
@@ -34,7 +34,7 @@ public class PlatformListAdapter extends ArrayAdapter<PlaylistBean.PlatformlistB
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        PlaylistBean.PlatformlistBean platformListBean = getItem(position);
+        PlaylistBean.ListBean channelListBean = getItem(position);
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(resourceId, null);
@@ -46,7 +46,7 @@ public class PlatformListAdapter extends ArrayAdapter<PlaylistBean.PlatformlistB
             viewHolder = (ViewHolder) convertView.getTag();
         }
         //noinspection ConstantConditions
-        viewHolder.tvPlatform.setText(platformListBean.getName());
+        viewHolder.tvPlatform.setText(channelListBean.getName());
 
         return convertView;
     }
@@ -58,7 +58,7 @@ public class PlatformListAdapter extends ArrayAdapter<PlaylistBean.PlatformlistB
     }
 
     @Override
-    public PlaylistBean.PlatformlistBean getItem(int position) {
+    public PlaylistBean.ListBean getItem(int position) {
         return datas.get(position);
     }
 

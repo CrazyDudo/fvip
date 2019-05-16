@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".ui.video.VideoActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true">
             <intent-filter>
@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.WebVideoActivity">
+        <activity android:name=".ui.WebVideoActivity">
 
         </activity>
     </application>

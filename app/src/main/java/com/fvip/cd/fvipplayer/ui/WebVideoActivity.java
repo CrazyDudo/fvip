@@ -1,4 +1,4 @@
-package com.fvip.cd.fvipplayer.activity;
+package com.fvip.cd.fvipplayer.ui;
 
 import android.app.Activity;
 import android.content.Context;

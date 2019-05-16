@@ -1,4 +1,4 @@
-package com.fvip.cd.fvipplayer.bean;
+package com.fvip.cd.fvipplayer.data.network.model;
 
 import java.util.List;
 

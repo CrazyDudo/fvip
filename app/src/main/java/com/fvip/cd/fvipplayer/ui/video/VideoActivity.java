@@ -1,4 +1,4 @@
-package com.fvip.cd.fvipplayer.activity;
+package com.fvip.cd.fvipplayer.ui.video;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -20,10 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.fvip.cd.fvipplayer.R;
-import com.fvip.cd.fvipplayer.adapter.ChannelListAdapter;
-import com.fvip.cd.fvipplayer.adapter.PlatformListAdapter;
-import com.fvip.cd.fvipplayer.api.ApiManage;
-import com.fvip.cd.fvipplayer.bean.PlaylistBean;
+import com.fvip.cd.fvipplayer.data.ApiManage;
+import com.fvip.cd.fvipplayer.data.network.model.PlaylistBean;
+import com.fvip.cd.fvipplayer.ui.adapter.ChannelListAdapter;
+import com.fvip.cd.fvipplayer.ui.adapter.PlatformListAdapter;
 import com.fvip.cd.fvipplayer.utils.ADFilterTool;
 import com.fvip.cd.fvipplayer.utils.StringUtil;
 
@@ -38,10 +38,10 @@ import rx.schedulers.Schedulers;
  * Created by cd on 2018/7/19.
  */
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+public class VideoActivity extends AppCompatActivity implements VideoContract.View {
+    private static final String TAG = "VideoActivity";
     private WebView webView;
-    private String url = "https://v.qq.com/";
+    private String url = "https://v.qq.com/";//default url
     private List<PlaylistBean.PlatformlistBean> mLeftListData = new ArrayList<>();
     private List<PlaylistBean.ListBean> mRightListData = new ArrayList<>();
     private String platformVideoUrl = "";
@@ -54,44 +54,15 @@ public class MainActivity extends AppCompatActivity {
     private String furl;
     private ProgressBar progressBar;
 
+    private VideoContract.Presenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
-    }
-
-    private void init() {
+        new VideoPresenter(this);
+        presenter.requestVideoResource();
         initView();
-        initData();
-    }
-
-    private void initData() {
-        ApiManage.getInstance()
-                .getSwitchService()
-                .getPlatform()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<PlaylistBean>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "onCompleted: ");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "onError: " + e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(PlaylistBean playlistBean) {
-                        mLeftListData = playlistBean.getPlatformlist();
-                        mRightListData = playlistBean.getList();
-                        initLeftMenu(mLeftListData);
-                        initRightMenu(mRightListData);
-                        Log.d(TAG, "onSuccess: " + mLeftListData.toString());
-                    }
-                });
     }
 
     private void initView() {
@@ -105,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initLeftMenu(final List<PlaylistBean.PlatformlistBean> mListData) {
-        mAdapter = new PlatformListAdapter(MainActivity.this, R.layout.platform_list_item, mListData);
+        mAdapter = new PlatformListAdapter(VideoActivity.this, R.layout.platform_list_item, mListData);
         lvLeft.setDivider(null);
         lvLeft.setAdapter(mAdapter);
         lvLeft.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -116,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawer(Gravity.LEFT);
                 }
                 loadUrl(mListData.get(position).getUrl());
-                Toast.makeText(MainActivity.this, mListData.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(VideoActivity.this, mListData.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     private void initRightMenu(final List<PlaylistBean.ListBean> mListData) {
-        channelListAdapter = new ChannelListAdapter(MainActivity.this, R.layout.platform_list_item, mListData);
+        channelListAdapter = new ChannelListAdapter(VideoActivity.this, R.layout.platform_list_item, mListData);
         lvRight.setDivider(null);
         lvRight.setAdapter(channelListAdapter);
         lvRight.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
                     drawerLayout.closeDrawer(Gravity.RIGHT);
                 }
 
-                if (StringUtil.getCount(platformVideoUrl, "http")>1) {
+                if (StringUtil.getCount(platformVideoUrl, "http") > 1) {
                     platformVideoUrl = platformVideoUrl.substring(platformVideoUrl.indexOf("=") + 1);
                 }
                 playVIP(mListData.get(position).getUrl(), platformVideoUrl);
-                Toast.makeText(MainActivity.this, mListData.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(VideoActivity.this, mListData.get(position).getName(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -166,15 +137,32 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "playVIP====" + furl);
     }
 
+    @Override
+    public void onLoadSuccess(PlaylistBean playlistBean) {
+        mLeftListData = playlistBean.getPlatformlist();
+        mRightListData = playlistBean.getList();
+        initLeftMenu(mLeftListData);
+        initRightMenu(mRightListData);
+        Log.d(TAG, "onSuccess: " + mLeftListData.toString());
+    }
 
-    private class MyWebChromeClient extends  WebChromeClient{
+    @Override
+    public void onLoadError(String error) {
+        Toast.makeText(this, "Loading error:" + error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setPresenter(VideoContract.Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    private class MyWebChromeClient extends WebChromeClient {
 
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
-            if(newProgress==100){
+            if (newProgress == 100) {
                 progressBar.setVisibility(View.GONE);//加载完网页进度条消失
-            }
-            else{
+            } else {
                 progressBar.setVisibility(View.VISIBLE);//开始加载网页时显示进度条
                 progressBar.setProgress(newProgress);//设置进度值
             }
@@ -182,19 +170,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     // 监听 所有点击的链接，如果拦截到我们需要的，就跳转到相对应的页面。
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.d(TAG, "shouldOverrideUrlLoading: current page===" + url);
             platformVideoUrl = url;
-//            Toast.makeText(MainActivity.this, "shouldOverrideUrlLoading: ==" + url, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(VideoActivity.this, "shouldOverrideUrlLoading: ==" + url, Toast.LENGTH_SHORT).show();
 //这里进行url拦截
 
  /*            if (url != null && url.contains("vip")) {
-                Toast.makeText(MainActivity.this, "url 拦截", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, "url 拦截", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VideoActivity.this, "url 拦截", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VideoActivity.this, "url 拦截", Toast.LENGTH_SHORT).show();
                 return true;
             }
 */
@@ -211,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
             url = url.toLowerCase();
-            if (!ADFilterTool.hasAd(MainActivity.this, url)) {
+            if (!ADFilterTool.hasAd(VideoActivity.this, url)) {
                 return super.shouldInterceptRequest(view, url);
             } else {
                 return new WebResourceResponse(null, null, null);
@@ -229,7 +216,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
-
-
 }

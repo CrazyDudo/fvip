@@ -1,4 +1,4 @@
-package com.fvip.cd.fvipplayer.config;
+package com.fvip.cd.fvipplayer.data.config;
 
 /**
  * Created by cd on 2018/7/19.

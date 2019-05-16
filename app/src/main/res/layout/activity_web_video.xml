@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.fvip.cd.fvipplayer.activity.MainActivity">
+    tools:context="com.fvip.cd.fvipplayer.ui.video.VideoActivity">
      <WebView
          android:id="@+id/webview_video"
          android:layout_width="match_parent"
