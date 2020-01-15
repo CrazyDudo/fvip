@@ -12,7 +12,7 @@ import rx.Observable;
 
 public interface PlatformListApi {
     //    https://iodefog.github.io/text/mviplistmm.json
-    @GET("text/mviplistmm.json")
+    @GET("iodefog/VipVideo/master/VipVideo/Helper/vlist.json")
     Observable<PlaylistBean> getPlatform();
 
 }
