@@ -26,7 +26,10 @@ import com.fvip.cd.fvipplayer.ui.adapter.ChannelListAdapter;
 import com.fvip.cd.fvipplayer.ui.adapter.PlatformListAdapter;
 import com.fvip.cd.fvipplayer.utils.ADFilterTool;
 import com.fvip.cd.fvipplayer.utils.StringUtil;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,7 +151,47 @@ public class VideoActivity extends AppCompatActivity implements VideoContract.Vi
 
     @Override
     public void onLoadError(String error) {
+        //read from local
         Toast.makeText(this, "Loading error:" + error, Toast.LENGTH_SHORT).show();
+
+        String fromAssets = getFromAssets("viplist_backup.json");
+
+        Gson gson = new Gson();
+
+        PlaylistBean playlistBean = gson.fromJson(fromAssets, PlaylistBean.class);
+
+        setResData(playlistBean);
+
+    }
+
+
+   public void setResData(PlaylistBean playlistBean ) {
+       mLeftListData = playlistBean.getPlatformlist();
+       mRightListData = playlistBean.getList();
+       initLeftMenu(mLeftListData);
+       initRightMenu(mRightListData);
+       Toast.makeText(this, "load from local", Toast.LENGTH_SHORT).show();
+   }
+
+
+    /**
+     * 读取assets文件
+     * @param fileName
+     * @return
+     */
+    public String getFromAssets(String fileName){
+        try {
+            InputStreamReader inputReader = new InputStreamReader( getResources().getAssets().open(fileName) );
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            String Result="";
+            while((line = bufReader.readLine()) != null)
+                Result += line;
+            return Result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  null;
+        }
     }
 
     @Override
@@ -169,6 +212,8 @@ public class VideoActivity extends AppCompatActivity implements VideoContract.Vi
 
         }
     }
+
+
 
     // 监听 所有点击的链接，如果拦截到我们需要的，就跳转到相对应的页面。
     private class MyWebViewClient extends WebViewClient {
@@ -192,7 +237,10 @@ public class VideoActivity extends AppCompatActivity implements VideoContract.Vi
         public void onPageFinished(WebView view, String url) {
 //            view.getSettings().setJavaScriptEnabled(true);
 //            super.onPageFinished(view, url);
-            view.loadUrl("javascript:function setTop(){document.querySelector('.ad-footer').style.display=\"none\";}setTop();");
+//            view.loadUrl("javascript:function setTop(){document.querySelector('.ad-footer').style.display=\"none\";}setTop();");
+
+//            super.onPageFinished(view, url);
+            view.loadUrl("javascript:document.getElementById('imPage').style.display='none';");
         }
 
         @Override
