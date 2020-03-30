@@ -9,7 +9,7 @@ FVIP player
 #### 使用方法
 
 1. 下载客户端   
-	* [Android](https://fir.im/qu73)
+	* [Android](http://d.alphaqr.com/qu73)
 	* [电脑版](https://github.com/phobal/ivideo)
 
 2. 选择视频资源  
